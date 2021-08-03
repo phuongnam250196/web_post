@@ -10,7 +10,7 @@ class App extends Component {
         return (
             <div className="App">
                 <AppHeader></AppHeader>
-                <div className="container px-40 mx-auto">
+                <div className="container px-64 mx-auto">
                     <Switch>
                         <Route path={`${path}/post`} component={Post} />
                         <Route path={`${path}/user`} component={User} />

@@ -42,7 +42,7 @@ class AppHeader extends Component {
         return (
             <Fragment>
                 <header className="bg-yellow-700">
-                    <div className="container px-40 mx-auto">
+                    <div className="container px-64 mx-auto">
                         <nav className="flex bg-yellow-700 py-4 px-1 justify-between items-center">
                             <div className="hover:text-green-600 font-bold cursor-pointer	text-white"
                                 onClick={() => this.goTo('post')}

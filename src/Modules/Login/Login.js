@@ -75,7 +75,7 @@ class Login extends Component {
             <div className="flex justify-center">
                 <div className="w-1/3 p-4 rounded-md border-2 border-green-600 mt-40">
                     <h3 className="font-bold uppercase mb-2">Đăng nhập tài khoản</h3>
-                    <div className="mb-3">
+                    <div className="mb-4">
                         <label  className="block mb-1">Tài khoản</label>
                         <input type="text" 
                             name="username"
@@ -85,7 +85,7 @@ class Login extends Component {
                         />
                         <p className="text-xs text-red-400 italic absolute">{errors.username}</p>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-4">
                         <label  className="block mb-1">Mật khẩu</label>
                         <input type="password"
                             name="password" 
