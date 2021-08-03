@@ -77,7 +77,7 @@ class ListPost extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { data, user } = this.state;
         const showPost = data.map((dat, index) => {
             return (
                 <div key={index} className="flex justify-between border-b-2 border-gray-300 py-4">
@@ -92,16 +92,18 @@ class ListPost extends Component {
                         >{dat.content}</h4>
                         <p className="text-gray-500 text-justify mb-2">Cụm 3 camera sau bao gồm camera góc rộng, camera Tele chuyên để chụp chân dung, camera Ultra Wide cho góc chụp siêu rộng.</p>
                         <div className="text-sm text-gray-600"><span className="text-green-700 font-bold text-sm">{dat.author}</span> viết {format.formDate(dat.ctime)}</div>
-                        {/* <div className="pt-3">
-                            <span 
-                                className="text-sm text-white bg-blue-400 rounded-md px-2 py-1 mr-1 cursor-pointer"
-                                onClick={(id)=>this.goTo(`update/${dat.id}`)}
-                            >Sửa</span>
-                            <span 
-                                className="text-sm text-white bg-red-400 rounded-md px-2 py-1 cursor-pointer"
-                                onClick={(id)=>this.onDeletePost(dat.id)}
-                                >Xóa</span>
-                        </div> */}
+                        {/* { (user.username === dat.author) && 
+                            <div className="pt-3">
+                                <span 
+                                    className="text-sm text-white bg-blue-400 rounded-md px-2 py-1 mr-1 cursor-pointer"
+                                    onClick={(id)=>this.goTo(`update/${dat.id}`)}
+                                >Sửa</span>
+                                <span 
+                                    className="text-sm text-white bg-red-400 rounded-md px-2 py-1 cursor-pointer"
+                                    onClick={(id)=>this.onDeletePost(dat.id)}
+                                    >Xóa</span>
+                            </div>
+                        } */}
                     </div>
                     <div className="w-2/12 pl-2 pt-1">
                         <span className="text-xs text-gray-600 float-right">
