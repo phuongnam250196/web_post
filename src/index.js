@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { Suspense, Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './Shared/Components/App/App';
+import Login from './Modules/Login/Login';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const isLogged = true;
+const Root = (
+  
+  <BrowserRouter>
+    <Fragment>
+      <Switch>
+        <Suspense>  
+          <Route path="/login" render={() => {
+            return (!isLogged) ? (
+              <Login></Login>
+            ) : (
+              <Redirect to="/app/post" ></Redirect>
+            )
+          }} ></Route>
+          <Route path="/app" render={() => {
+            return (isLogged) ? (
+              <App></App>
+            ) : (
+              <Redirect to="/login" ></Redirect>
+            )
+          }} ></Route>
+        </Suspense>
+      </Switch>
+    </Fragment>
+  </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(Root, document.getElementById('root'));
+
+
+
+export default Root;
