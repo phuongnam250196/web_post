@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Format } from "./../../../../Helpers/Format";
+import { Auth } from "./../../../../Helpers/Auth";
+const auth = new Auth();
 const format = new Format();
 
 class ItemComment extends Component {
@@ -26,7 +28,7 @@ class ItemComment extends Component {
                     <div className="ml-4 w-full">
                         <div className="w-full flex justify-between">
                             <h5 className="text-gray-400 mb-1 font-thin"><mark className="bg-white text-green-600 font-normal">{comment.author}</mark> {format.formDate (comment.ctime)}</h5>
-                            <div>
+                            <div className={comment.author === auth.enToken().username ? "" : "hidden"}>
                                 <svg className="icon icon-drive_file_rename_outline w-4 h-4 inline-block fill-current stroke-current 
                                 stroke-0 -mt-0.5 mr-2 cursor-pointer hover:text-green-600"
                                     onClick={(id) => this.onEditComment(comment.id)}

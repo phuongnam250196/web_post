@@ -5,7 +5,13 @@ import './index.css';
 import App from './Shared/Components/App/App';
 import Login from './Modules/Login/Login';
 
-const isLogged = true;
+import { Auth } from './Helpers/Auth';
+const auth = new Auth();
+
+const token_check = auth.enToken();
+console.log(token_check)
+const isLogged = token_check ? true : false;
+
 const Root = (
   
   <BrowserRouter>

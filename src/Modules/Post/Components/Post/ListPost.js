@@ -3,13 +3,18 @@ import PostService from "./../../Shared/PostService";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Format } from "./../../../../Helpers/Format";
+
+import { Auth } from "./../../../../Helpers/Auth";
+const auth = new Auth();
+
 const format = new Format();
 
 class ListPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            user: {}
         }
     }
 
@@ -18,10 +23,13 @@ class ListPost extends Component {
     }
 
     getData = () => {
+        const user = auth.enToken();
+
         PostService.listPost().then(res => {
-            // console.log('data', res.data)
+            // console.log('data', res.data, user)
             this.setState({
-                data: res.data
+                data: res.data,
+                user
             })
         })
     }

@@ -5,7 +5,10 @@ import FormComment from "./../Comment/FormComment";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Format } from "../../../../Helpers/Format";
+import { Auth } from "./../../../../Helpers/Auth";
+const auth = new Auth();
 const format = new Format();
+
 
 class DetailPost extends Component {
     constructor(props) {
@@ -14,7 +17,8 @@ class DetailPost extends Component {
             comments: [],
             post: {},
             text: "",
-            id_edit: ""
+            id_edit: "",
+            user: {}
         }
     }
 
@@ -36,6 +40,13 @@ class DetailPost extends Component {
             })
         })
 
+        const user = auth.enToken();
+        if (user) {
+            this.setState({
+                user
+            })
+        }
+
         // console.log("param id", this.props.match.params.id)
     }
 
@@ -50,7 +61,7 @@ class DetailPost extends Component {
     }
 
     onComment = (text) => {
-        const { post, comments, id_edit } =  this.state;
+        const { post, comments, id_edit, user } =  this.state;
         
         if(id_edit) {
             const comment = comments.find(c => {
@@ -66,7 +77,7 @@ class DetailPost extends Component {
             })
         } else {
             const data = {
-                author: post.author,
+                author: user.username,
                 text
             }
             PostService.createComment(data).then(res => {

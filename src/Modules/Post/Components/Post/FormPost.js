@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PostService from "./../../Shared/PostService";
 
+import { Auth } from "./../../../../Helpers/Auth";
+const auth = new Auth();
+
 class FormPost extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +37,7 @@ class FormPost extends Component {
 
     onSubmitPost = () => {
         const { content, post, isEdit } = this.state;
+        const user = auth.enToken();
         
         if (isEdit) {
             post.content = content;
@@ -48,7 +52,7 @@ class FormPost extends Component {
         } else {
 
             const data = {
-                author: "namtran",
+                author: user.username,
                 content
             }
             PostService.createPost(data).then(res => {
